@@ -1,0 +1,13 @@
+version: "3"
+services:
+  frontend-frozenlist:
+    build:
+      context: .
+      dockerfile: dockerfile.dev
+
+    ports:
+      - "4200:4200"
+    image: miguelmainmethod/frozenlistfrontend
+    volumes:
+      - /app/node_moduels
+      - .:/frontend
