@@ -5,6 +5,8 @@ import { RegisterComponent } from './components/register/register.component';
 import {AngularFireModule} from "@angular/fire/compat";
 import {FirebaseAppService} from "./shared/services/firebase-app.service";
 import {RouterModule, Routes} from "@angular/router";
+import {MatCardModule} from "@angular/material/card";
+import {TranslateModule} from "@ngx-translate/core";
 
 const routes: Routes = [
   {
@@ -20,6 +22,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
+    MatCardModule,
+    TranslateModule,
 
   ],
   providers: [

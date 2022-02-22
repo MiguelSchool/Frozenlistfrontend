@@ -7,8 +7,10 @@ import {RouterModule, Routes} from "@angular/router";
 import {environment} from "../environments/environment";
 import {AngularFireDatabase} from "@angular/fire/compat/database";
 import {AngularFireAuthModule} from "@angular/fire/compat/auth";
-import { initializeApp } from "firebase/app";
 import {AngularFireModule} from "@angular/fire/compat";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {TranslateLoader, TranslateModule, TranslateService} from "@ngx-translate/core";
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 
 const routes: Routes = [
   {
@@ -17,6 +19,11 @@ const routes: Routes = [
       .then(module => module.AuthModule)
   }
 ]
+
+// loader module
+export  function  HttpLoaderFactory(http:  HttpClient) {
+  return  new  TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -28,9 +35,22 @@ const routes: Routes = [
     AngularFireAuthModule,
     RouterModule,
     RouterModule.forRoot(routes),
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide:  TranslateLoader,
+        useFactory:  HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
+  exports: [TranslateModule],
   providers: [AngularFireDatabase],
   bootstrap: [AppComponent]
 })
 export class AppModule {
+  constructor(translate:  TranslateService) {
+    translate.setDefaultLang('de');
+    translate.use('de');
+  }
 }

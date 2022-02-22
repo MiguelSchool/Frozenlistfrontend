@@ -6,6 +6,10 @@ RUN npm install -g npm@8.5.1
 RUN npm i @angular/cli@13
 RUN npm install firebase
 RUN npm install firebase @angular/fire --save
+RUN npm i @angular/material
+RUN npm i material-icons
+RUN npm install @ngx-translate/core --save
+RUN npm install @ngx-translate/http-loader --save
 
 
 COPY ./ ./
