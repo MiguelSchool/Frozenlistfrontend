@@ -3,8 +3,15 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import {AngularFireModule} from "@angular/fire/compat";
+import {FirebaseAppService} from "./shared/services/firebase-app.service";
+import {RouterModule, Routes} from "@angular/router";
 
-
+const routes: Routes = [
+  {
+    path: '',
+    component: RegisterComponent
+  }
+]
 @NgModule({
   declarations: [
     LoginComponent,
@@ -12,14 +19,11 @@ import {AngularFireModule} from "@angular/fire/compat";
   ],
   imports: [
     CommonModule,
-    AngularFireModule.initializeApp({
-      apiKey: "AIzaSyA3QYwP0mkALedLwvHWcbTPEmZ83pghbbg",
-      authDomain: "frontend-frozenlist.firebaseapp.com",
-      projectId: "frontend-frozenlist",
-      storageBucket: "frontend-frozenlist.appspot.com",
-      messagingSenderId: "897746207057",
-      appId: "1:897746207057:web:4f436d5cfcdc8630e35370"
-    })
+    RouterModule.forChild(routes),
+
+  ],
+  providers: [
+    FirebaseAppService
   ]
 })
 export class AuthModule { }

@@ -4,6 +4,7 @@ WORKDIR '/frontend'
 COPY package.json .
 RUN npm install -g npm@8.5.1
 RUN npm i @angular/cli@13
+RUN npm install firebase
 RUN npm install firebase @angular/fire --save
 
 
